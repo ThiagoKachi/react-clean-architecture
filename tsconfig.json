@@ -18,13 +18,12 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    // "paths": {
-    //   "@/*": ["*"],
-    //   "@/tests/*": ["../tests/*"]
-    // },
+    "paths": {
+      "@/*": ["*"],
+      "@/tests/*": ["../tests/*"]
+    },
   },
   "include": ["src"],
-  // "exclude": ["tests/e2e/cypress"]
+  "exclude": ["tests/e2e/cypress"]
 }
