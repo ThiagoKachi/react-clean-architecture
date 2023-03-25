@@ -33,6 +33,15 @@
     .submit {
       margin-top: 24px;
       font-size: 18px;
+
+      &:disabled {
+        cursor: not-allowed;
+        background-color: $disabled;
+
+        &:hover {
+          background-color: $disabled;
+        }
+      }
     }
 
     .link {
