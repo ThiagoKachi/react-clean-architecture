@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Spinner } from "../spinner/Spinner";
+import { Spinner } from "@/presentation/components";
 
 import Styles from './form-status-styles.scss'
 
