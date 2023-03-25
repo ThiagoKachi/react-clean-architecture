@@ -1,11 +1,13 @@
 import React from "react";
-import { render } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import Login from "./login";
 
 describe('Login', () => {
-  it('should ', () => {
+  it('should not render spinner and error message on start', () => {
     render(<Login />)
 
-    expect(true).toBe(true)
+    const errorWrap = screen.getByTestId('error-wrap')
+
+    expect(errorWrap.childElementCount).toBe(0)
   });
 });
