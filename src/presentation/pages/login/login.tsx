@@ -2,9 +2,10 @@ import React from 'react'
 
 import { Spinner } from '@/presentation/components/spinner/Spinner'
 import Header from '@/presentation/components/login-header/login-header'
+import Footer from '@/presentation/components/footer/footer'
+import Input from '@/presentation/components/input/input'
 
 import Styles from './login-styles.scss'
-import Footer from '@/presentation/components/footer/footer'
 
 export function Login() {
   return (
@@ -14,15 +15,8 @@ export function Login() {
       <form className={Styles.form}>
         <h2>Login</h2>
 
-        <div className={Styles.inputWrap}>
-          <input type="email" name="email" placeholder='Digite seu e-mail' />
-          <span className={Styles.status}>🔴</span>
-        </div>
-
-        <div className={Styles.inputWrap}>
-          <input type="password" name="password" placeholder='Digite sua senha' />
-          <span className={Styles.status}>🔴</span>
-        </div>
+        <Input type="email" name="email" placeholder='Digite seu e-mail' />
+        <Input type="password" name="password" placeholder='Digite sua senha' />
 
         <button type="submit" className={Styles.submit}>Entrar</button>
         <span className={Styles.link}>Criar conta</span>
