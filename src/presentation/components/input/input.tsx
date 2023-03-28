@@ -11,11 +11,11 @@ export default function Input(props: InputProps) {
   const error = state[`${props.name}Error`]
 
   function getStatus(): string {
-    return '🔴'
+    return error ? '🔴' : '🟢'
   }
 
   function getTitle(): string {
-    return error
+    return error || 'Tudo certo!'
   }
 
   function handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
