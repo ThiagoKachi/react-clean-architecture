@@ -36,12 +36,12 @@ describe('Login', () => {
     expect(emailStatus.textContent).toBe('🔴')
     
     const passwordStatus = screen.getByTestId('password-status')
-    expect(passwordStatus.title).toBe('Campo obrigatório')
+    expect(passwordStatus.title).toBe(validationSpy.errorMessage)
     expect(passwordStatus.textContent).toBe('🔴')
   });
 
   it('should call validation with correct email', () => {
-    const { sut, validationSpy } = makeSut()
+    const { validationSpy } = makeSut()
 
     const emailInput = screen.getByTestId('email')
     const email = faker.internet.email()
@@ -70,5 +70,15 @@ describe('Login', () => {
     const emailStatus = screen.getByTestId('email-status')
     expect(emailStatus.title).toBe(validationSpy.errorMessage)
     expect(emailStatus.textContent).toBe('🔴')
+  });
+
+  it('should show password error if Validation fails', () => {
+    const { validationSpy } = makeSut()
+
+    const passwordInput = screen.getByTestId('password')
+    fireEvent.input(passwordInput, { target: { value: faker.internet.password() } })
+    const passwordStatus = screen.getByTestId('password-status')
+    expect(passwordStatus.title).toBe(validationSpy.errorMessage)
+    expect(passwordStatus.textContent).toBe('🔴')
   });
 });
