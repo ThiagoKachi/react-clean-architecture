@@ -16,7 +16,7 @@ export default function Login({ validation }: Props) {
     email: '',
     password: '',
     emailError: '',
-    passwordError: 'Campo obrigatório',
+    passwordError: '',
     mainError: '',
   });
 
@@ -28,7 +28,10 @@ export default function Login({ validation }: Props) {
   }, [state.email])
 
   useEffect(() => {
-    validation.validate('password', state.password)
+    setState((oldState) => ({
+      ...oldState,
+      passwordError: validation.validate('password', state.password),
+    }))
   }, [state.password])
 
   return (
