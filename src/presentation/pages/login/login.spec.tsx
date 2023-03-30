@@ -171,4 +171,14 @@ describe("Login", () => {
 
     expect(authenticationSpy.callsCount).toBe(1)
   });
+
+  it("should not call Authentication if form is invalid", () => {
+    const { validationSpy, authenticationSpy } = makeSut();
+    validationSpy.errorMessage = faker.random.words();
+
+    populateEmailField()
+    fireEvent.submit(screen.getByTestId("form"));
+
+    expect(authenticationSpy.callsCount).toBe(0)
+  });
 });
