@@ -221,6 +221,7 @@ describe("Login", () => {
     await waitFor(() => screen.getByTestId("form"))
     expect(localStorage.setItem)
       .toHaveBeenCalledWith('accessToken', authenticationSpy.account.accessToken)
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/', { replace: true })
   });
 
   it("should go to SignUp page", async () => {
