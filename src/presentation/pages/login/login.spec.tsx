@@ -161,4 +161,14 @@ describe("Login", () => {
       password,
     });
   });
+
+  it("should call Authentication only once", () => {
+    const { validationSpy, authenticationSpy } = makeSut();
+    validationSpy.errorMessage = null;
+
+    simulateValidSubmit();
+    simulateValidSubmit();
+
+    expect(authenticationSpy.callsCount).toBe(1)
+  });
 });
