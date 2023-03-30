@@ -1,4 +1,5 @@
 import React from "react";
+import { BrowserRouter } from 'react-router-dom'
 import {
   fireEvent,
   render,
@@ -21,12 +22,20 @@ type SutTypes = {
   authenticationSpy: AuthenticationSpy;
 };
 
+const mockedUsedNavigate = jest.fn();
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useNavigate: () => mockedUsedNavigate
+}))
+
 const makeSut = (): SutTypes => {
   const validationSpy = new ValidationSpy();
   const authenticationSpy = new AuthenticationSpy();
   validationSpy.errorMessage = faker.random.words();
   const sut = render(
-    <Login validation={validationSpy} authentication={authenticationSpy} />
+    <BrowserRouter>
+      <Login validation={validationSpy} authentication={authenticationSpy} />
+    </BrowserRouter>
   );
   return {
     sut,
@@ -212,5 +221,14 @@ describe("Login", () => {
     await waitFor(() => screen.getByTestId("form"))
     expect(localStorage.setItem)
       .toHaveBeenCalledWith('accessToken', authenticationSpy.account.accessToken)
+  });
+
+  it("should go to SignUp page", async () => {
+    const { validationSpy } = makeSut();
+    validationSpy.errorMessage = null;
+    
+    const register = screen.getByTestId("signup");
+    fireEvent.click(register);
+    expect(mockedUsedNavigate).toHaveBeenCalledWith('/signup')
   });
 });
