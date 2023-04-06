@@ -1,24 +1,17 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-import { Login } from "@/presentation/pages";
-import { ValidationSpy, AuthenticationSpy } from "@/presentation/test";
+type Props = {
+  MakeLogin: React.FC;
+}
 
-export default function Router() {
-  const validationSpy = new ValidationSpy();
-  const authenticationSpy = new AuthenticationSpy();
-
+export default function Router({ MakeLogin }: Props) {
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/login"
-          element={
-            <Login
-              validation={validationSpy}
-              authentication={authenticationSpy}
-            />
-          }
+          element={<MakeLogin />}
         />
       </Routes>
     </BrowserRouter>
