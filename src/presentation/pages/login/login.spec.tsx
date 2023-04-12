@@ -213,7 +213,7 @@ describe("Login", () => {
     expect(authenticationSpy.callsCount).toBe(0)
   });
 
-  it("should present erro if Authentication fails", async () => {
+  it("should present error if Authentication fails", async () => {
     const { validationSpy, authenticationSpy } = makeSut();
     validationSpy.errorMessage = null;
     const error = new InvalidCredentialsError()
